@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Biodata Form</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<style>
+		.popup {
+			border: 2px solid #45f3ff;
+			border-radius: 30px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="box">
+		<form autocomplete="off">
+			<h2>Form Biodata</h2>
+			<div class="container">
+				<div class="gatau">
+					<div class="inputBox">
+						<input type="text" name="nama" required>
+						<span><ion-icon name="person"></ion-icon> Nama</span>
+						<i></i>
+					</div>
+					<div class="inputBox">
+						<input type="number" name="nik" required>
+						<span><ion-icon name="key"></ion-icon> NIK</span>
+						<i></i>
+					</div>
+					<span class="title-input"><ion-icon name="male-female"></ion-icon> Jenis Kelamin</span>
+					<div class="container">
+						<div class="radio-tile-group">
+							<div class="input-container">
+								<input id="laki-laki" type="radio" name="jenkel">
+								<div class="radio-tile">
+									<ion-icon name="male" class="male"></ion-icon>
+									<label class="male" for="laki-laki">Laki - laki</label>
+								</div>
+							</div>
+							<div class="input-container">
+								<input id="perempuan" type="radio" name="jenkel" required>
+								<div class="radio-tile">
+									<ion-icon name="female" class="female"></ion-icon>
+									<label class="female" for="perempuan">Perempuan</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="gatau">
+					<div class="inputBox">
+						<input type="text" name="alamat" required>
+						<span><ion-icon name="home"></ion-icon>&nbsp;Alamat</span>
+						<i></i>
+					</div>
+					<div class="inputBox">
+						<input type="date" name="ttl" required>
+						<span><ion-icon name="calendar"></ion-icon>&nbsp;Tgl Lahir</span>
+						<i></i>
+					</div>
+					<div class="inputBox">
+						<label for="dropdown"><ion-icon name="school"></ion-icon>&nbsp;Pendidikan Terakhir</label>
+						<select id="dropdown" name="pendidikan" required>
+							<option value="" disabled selected>Pilih opsi</option>
+							<option value="s2">S2</option>
+							<option value="s1">S1/D4</option>
+							<option value="d3">D3</option>
+							<option value="slta">SLTA</option>
+							<option value="smp">SMP</option>
+							<option value="sd">SD</option>
+						</select>
+					</div>
+					<div class="inputBox">
+						<input type="text" name="hobi" required>
+						<span><ion-icon name="star"></ion-icon>&nbsp;Hobi</span>
+						<i></i>
+					</div>
+				</div>
+			</div>
+			<input class="btn-submit" type="submit" value="Kirim" id="submit">
+		</form>
+	</div>
+
+	<script>
+		$(document).on('click', '#submit', function (e) {
+			e.preventDefault();
+			var nama = document.querySelector('input[name="nama"]').value;
+			const inputFields = document.querySelectorAll('input[required]');
+			let allInputsFilled = true;
+
+			inputFields.forEach(function (inputField) {
+				if (inputField.value.trim() === '') {
+					allInputsFilled = false;
+				}
+			});
+
+			if (allInputsFilled) {
+				Swal.fire({
+					title: 'Success',
+					text: 'Hai ' + nama + ', datamu telah tersimpan!',
+					icon: 'success',
+					customClass: {
+						popup: 'popup'
+					}
+				});
+			} else {
+				Swal.fire({
+					title: 'Error!',
+					text: 'Anda belum melengkapi data',
+					icon: 'error',
+					confirmButtonText: '   Oke   ',
+					customClass: {
+						popup: 'popup'
+					}
+				})
+			}
+		});
+	</script>
+
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
